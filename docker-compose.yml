@@ -1,0 +1,22 @@
+version: '3'
+
+networks:
+  net_filegen:
+    driver: bridge
+
+services:
+
+  container_filegen:
+    build:
+      context: .
+      dockerfile: docker/filegen/Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html/filegen
+    environment:
+      #xdebug
+      PHP_IDE_CONFIG: "serverName=192.168.0.42"
+      XDEBUG_CONFIG: "remote_host=192.168.0.15 idekey=PHPSTORM"
+    networks:
+      - net_filegen

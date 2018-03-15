@@ -1,0 +1,7 @@
+dev_filegen.annotation:
+    resource: "@DevFileGenTestBundle/Controller/"
+    type:     annotation
+
+dev_filegen.thread.run:
+    path:     /thread/run/{task}/{idProcess}/{clientIp}
+    defaults: { _controller: DevFileGenTestBundle:Thread:run }

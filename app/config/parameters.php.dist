@@ -1,0 +1,20 @@
+<?php
+
+$envVar = new \Symfony\Component\HttpFoundation\ParameterBag(getenv() ?: []);
+
+// db
+$container->setParameter('locahost', 'container_filegen');
+$container->setParameter('database_host', $envVar->get('CONTAINER_MYSQL_HOST', 'container_mysql'));
+$container->setParameter('database_port', $envVar->get('CONTAINER_MYSQL_PORT', 3306));
+$container->setParameter('database_user', $envVar->get('CONTAINER_MYSQL_USER', 'root'));
+$container->setParameter('database_password', $envVar->get('CONTAINER_MYSQL_PASSWORD', 'secret'));
+$container->setParameter('database_name', 'filegen');
+$container->setParameter('database_path', '%kernel.root_dir%/var/data/data.sqlite%');
+
+
+// swiftmailer
+$container->setParameter('mailer_transport', 'smtp');
+$container->setParameter('mailer_host', $container->getParameter('locahost'));
+$container->setParameter('mailer_user', null);
+$container->setParameter('mailer_password', null);
+$container->setParameter('secret', 'ThisTokenIsNotSoSecretChangeIt');

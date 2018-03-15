@@ -1,0 +1,5 @@
+services:
+    file_gen_test.compare:
+        class: Dev\FileGenTestBundle\Service\Compare
+
+

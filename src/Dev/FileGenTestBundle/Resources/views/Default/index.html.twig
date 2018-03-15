@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FileGenTest</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    {% stylesheets '@DevFileGenTestBundle/Resources/css/Default/index.css' %}
+    <link type="text/css" rel="stylesheet" media="all" href="{{ asset_url }}" />
+    {% endstylesheets %}
+</head>
+<body>
+<div id="content">
+    <div class="stat">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre de lignes ecrites</th>
+                {% for nbLine, stat in stats %}
+                    <th scope="col"  class="nbLine">{{ nbLine }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Avec generateur<br><i>(memoire)</i></th>
+                {% for stat in stats %}
+                    <td scope="row" class="filegenValue">{{ stat.filegen }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Normal<br><i>(memoire)</i></th>
+                {% for stat in stats %}
+                    <td scope="row" class="normalValue">{{ stat.normal }}</td>
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <div id="container"></div>
+</div>
+
+{% javascripts '@DevFileGenTestBundle/Resources/js/Default/index.js' %}
+<script type="text/javascript" src="{{ asset_url }}" />
+{% endjavascripts %}
+</body>
+</html>
